@@ -18,9 +18,6 @@ Checkpoint realizado com o intuito de colocar em prática todos os conhecimentos
 4. Código vulnerável à esta falha 
 5. Exploits publicados 
 
-
-## 1ª Vulnerabilidade
-
 ## 1.1 - Nome da falha
 
 - Reflected Cross-site scripting (XSS)
@@ -29,7 +26,7 @@ Nesse tipo de vulnerabilidade, o atacante consegue injetar scripts maliciosos no
 
 ## 1.2 - Impacto
 
-### TOP 3 no OWASP 10
+### TOP 3 no OWASP 10 (A03)
 
 Se um invasor puder controlar um script executado no navegador da vítima, normalmente poderá comprometer totalmente esse usuário. Entre outras coisas, o invasor pode:
 
@@ -85,7 +82,7 @@ app = Flask(__name__)
 def index():
     if request.method == 'POST':
 
-        # vvv Aqui está a linha vulneravel!! vvv
+        # vvv Aqui está a linha que mitiga a vulnerabilidade!! vvv
 
         nome = html.escape(request.form['nome'])
         return f"<h1>Olá, {nome}!</h1>"
@@ -112,4 +109,98 @@ URL: https://www.exploit-db.com/exploits/51198
 
 URL: https://www.exploit-db.com/exploits/51214
 
+
+
+
+
+## 2.1 - Nome da falha
+
+- Path Traversal
+
+Ocorre quando uma aplicação web permite que um invasor acesse arquivos e diretórios fora do diretório raiz pretendido. Manipulando variáveis ​​que fazem referência a arquivos com sequências (../) e suas variações ou usando caminhos absolutos. Podendo navegar por diretórios do sistema de arquivos do servidor, acessando arquivos sensíveis ou executando comandos não autorizados.
+
+
+
+## 1.2 - Impacto
+
+Esta vulnerabilidade é uma falha de segurança crítica que pode ter consequências graves se explorada por um invasor. 
+
+Um invasor que explorar com êxito pode obter acesso a dados confidenciais, modificar ou excluir arquivos e, potencialmente, executar código arbitrário ou realizar outras ações maliciosas. 
+
+Isto pode levar a uma variedade de incidentes de segurança, como violações de dados, roubo de propriedade intelectual ou interrupção de serviços.
+
+OBS: O impacto de uma vulnerabilidade Path Traversal pode variar dependendo da natureza dos arquivos e dados acessados
+
+## 1.3 - Dois exemplos onde elas ocorreram no mundo real
+
+Path Traversal no Site da British Airways (2018)
+
+Path Traversal no Equifax (2017)
+
+## 1.4 - Código vulnerável à esta falha 
+
+```
+import os
+from flask import Flask, request, send_file
+
+app = Flask(__name__)
+
+@app.route('/download')
+def download_file():
+    filename = request.args.get('file', '')
+
+    # vvv Aqui está a linha vulneravel!! vvv
+
+    file_path = os.path.join('/path/to/files/', filename)
+    
+    # Verifica se o arquivo existe e envia para download
+    if os.path.isfile(file_path):
+        return send_file(file_path, as_attachment=True)
+    else:
+        return "Arquivo não encontrado!", 404
+
+if __name__ == '__main__':
+    app.run(debug=True)
+```
+## 1.4.2 - Bonus! Código mitigado
+
+```
+import os
+from flask import Flask, request, send_file
+
+app = Flask(__name__)
+
+@app.route('/download')
+def download_file():
+    filename = request.args.get('file', '')
+    # Caminho absoluto do diretório permitido
+    allowed_directory = '/path/to/files/'
+
+    # vvv Aqui está a linha que mitiga a vulnerabilidade!! vvv
+    
+    file_path = os.path.abspath(os.path.join(allowed_directory, filename))
+
+    if os.path.commonpath((file_path, allowed_directory)) != allowed_directory:
+        # Se o caminho não estiver dentro do diretório permitido, retorna erro
+        return "Acesso não autorizado!", 403
+
+    # Verifica se o arquivo existe e envia para download
+    if os.path.isfile(file_path):
+        return send_file(file_path, as_attachment=True)
+    else:
+        return "Arquivo não encontrado!", 404
+
+if __name__ == '__main__':
+    app.run(debug=True)
+```
+
+## 1.5 - Exploits publicados 
+
+1 -  Path Traversal in Oracle GlassFish Server Open Source Edition
+
+URL: https://www.exploit-db.com/exploits/45196
+
+2 - Apache HTTP Server 2.4.50 - Path Traversal & Remote Code Execution (RCE)
+
+URL: https://www.exploit-db.com/exploits/50406
 
