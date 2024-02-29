@@ -204,3 +204,20 @@ URL: https://www.exploit-db.com/exploits/45196
 
 URL: https://www.exploit-db.com/exploits/50406
 
+## 2ª Parte - CTF Hacker One
+
+IDENTIFIQUE o seu relatório com um print contendo seu usuário na plataforma, email, nome completo e RM!
+
+## Laboratorio Realizado
+
+### Nome:
+- Hackyholidays CTF
+### Tipo: 
+- Web
+### Nivel:
+- Moderate
+
+## Write-up
+
+
+
