@@ -211,7 +211,7 @@ IDENTIFIQUE o seu relatório com um print contendo seu usuário na plataforma, e
 ## Laboratorio Realizado
 
 ### Nome:
-- Hackyholidays CTF
+- Grayhatcon CTF
 ### Tipo: 
 - Web
 ### Nivel:
