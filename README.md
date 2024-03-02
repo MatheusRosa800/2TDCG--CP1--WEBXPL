@@ -121,7 +121,7 @@ Ocorre quando uma aplicação web permite que um invasor acesse arquivos e diret
 
 
 
-## 1.2 - Impacto
+## 2.2 - Impacto
 
 Esta vulnerabilidade é uma falha de segurança crítica que pode ter consequências graves se explorada por um invasor. 
 
@@ -131,13 +131,13 @@ Isto pode levar a uma variedade de incidentes de segurança, como violações de
 
 OBS: O impacto de uma vulnerabilidade Path Traversal pode variar dependendo da natureza dos arquivos e dados acessados
 
-## 1.3 - Dois exemplos onde elas ocorreram no mundo real
+## 2.3 - Dois exemplos onde elas ocorreram no mundo real
 
 Path Traversal no Site da British Airways (2018)
 
 Path Traversal no Equifax (2017)
 
-## 1.4 - Código vulnerável à esta falha 
+## 2.4 - Código vulnerável à esta falha 
 
 ```
 import os
@@ -162,7 +162,7 @@ def download_file():
 if __name__ == '__main__':
     app.run(debug=True)
 ```
-## 1.4.2 - Bonus! Código mitigado
+## 2.4.2 - Bonus! Código mitigado
 
 ```
 import os
@@ -194,7 +194,7 @@ if __name__ == '__main__':
     app.run(debug=True)
 ```
 
-## 1.5 - Exploits publicados 
+## 2.5 - Exploits publicados 
 
 1 -  Path Traversal in Oracle GlassFish Server Open Source Edition
 
