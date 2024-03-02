@@ -230,6 +230,8 @@ Já sabemos de 3 coisas:
 
 ![Imagem do programa](https://ibb.co/mSn9cDf)
 
+<img src="Imagens/Imagem1.png">
+
 ## Flag N° 1 
 
 Quando vi a caixa de entrada, a primeira coisa que fiz foi colocar um codigo script. Porém não obtive nada.
