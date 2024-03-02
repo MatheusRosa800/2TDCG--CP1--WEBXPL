@@ -276,11 +276,11 @@ Depois disso, fui analisar a URL e percebi que ela recebe o parâmetro page=admi
 
 <img src="Imagens/Imagem4.png">
 
-- O caminho onde o programa roda.
+1- O caminho onde o programa roda.
   
-- O include path.
+2- O include path.
 
-- Procura de um arquivo **a.php** 
+3- Procura de um arquivo **a.php** 
 
 Aqui foi possível perceber que o include recebe nomes de arquivos, pois ele procurou por a.php, isso quer dizer que admin\auth\inc, são paginas distintas e elas se juntam na pagina principal "index".
 
@@ -294,7 +294,8 @@ Comecei alterar os parametros pelas paginas sozinhas:
 
 Unindo admin + inc (page=admin.inc), carregou esta página e no final da página a nossa 2ª FLAG
 
-<img src="Imagens/Imagem5.png">
+<img src="Imagens/Imagem6.png">
+
 
 ## Flag N° 3
 
