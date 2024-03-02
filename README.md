@@ -223,20 +223,37 @@ IDENTIFIQUE o seu relatório com um print contendo seu usuário na plataforma, e
 
 Lendo as informações do site sabemos que há um PHP rodando e que ele também utilizou a função include() que já sabemos que é uma função vulnerável
 
-![Imagem do programa](https://ibb.co/mSn9cDf)
-
-### Flag N° 1 
-
 Abaixo há uma box de comentário que quando submetida, é enviada para o servidor e apenas o admin pode liberar o comentário
 
 Já sabemos de 3 coisas: 
 
-1-	PHP rodando.
+1-	Tem um PHP rodando.
 
 2-	Contem um usuário admin, e possivelmente uma pagina para logar como admin.
 
-3-	Vulnerável a LFI e RFI através do include().
+3-	Vulnerável através do include().
 
+![Imagem do programa](https://ibb.co/mSn9cDf)
+
+### Flag N° 1 
+
+Quando vi a caixa de entrada a primeira coisa que fiz foi colocar um codigo script. Porém não obtive nada.
+
+~~~~
+<script>alert('Teste')</script>
+~~~~
+
+Logo depois testei um comando PHP para ver se havia um PHP injection. 
+
+~~~~
+<?php
+phpinfo();
+?>
+~~~~
+
+E foi ai que já encontrei a primeria FLAG!
+
+![Imagem do programa](https://ibb.co/9p79FMk)
 
 ### Flag N° 2
 
