@@ -280,7 +280,7 @@ Depois disso, fui analisar a URL e percebi que ela recebe o parâmetro page=admi
   
 - O include path.
 
-- a.php.
+- Procura de um arquivo **a.php** 
 
 Aqui foi possível perceber que o include recebe nomes de arquivos, pois ele procurou por a.php, isso quer dizer que admin\auth\inc, são paginas distintas e elas se juntam na pagina principal "index".
 
