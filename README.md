@@ -235,7 +235,7 @@ Já sabemos de 3 coisas:
 
 ![Imagem do programa](https://ibb.co/mSn9cDf)
 
-### Flag N° 1 
+## Flag N° 1 
 
 Quando vi a caixa de entrada a primeira coisa que fiz foi colocar um codigo script. Porém não obtive nada.
 
@@ -255,10 +255,51 @@ E foi ai que já encontrei a primeria FLAG!
 
 ![Imagem do programa](https://ibb.co/9p79FMk)
 
-### Flag N° 2
+## Flag N° 2
 
+Depois fui em inspecionar elementos e encontrei este comentário:
 
+~~~~
+<!--<a href="?page=admin.auth.inc">Admin login</a>-->
+~~~~
 
-### Flag N° 3
+Isso nos dá a resposta da segunda teoria que tínhamos – a pagina de login para admin.
+
+Entrando na pagina admin tem apenas uma parte adicional de login
+
+![Imagem do programa](https://ibb.co/b2JkpbM) 
+
+Primerio testei um sql injection simples
+
+~~~~
+' OR 1=1
+~~~~
+
+Mas acabou não dando em nada.
+
+Depois disso, fui analisar a URL e percebi que ela recebe o parâmetro admin.auth.inc, pensei em tentar colocar algo diferente para ver se refletia, por exemplo “pagina “a” não encontrada”; quando enviei, recebi esse erro suspeito que nos deu algumas dicas.
+
+![Imagem do programa](https://ibb.co/Hzw5SSy) 
+
+- o caminho onde o programa roda
+  
+- o include path
+
+- a.php
+
+Aqui foi possível perceber que o include recebe nomes de arquivos, pois ele procurou por a.php, isso quer dizer que admin\auth\inc, são paginas distintas e elas se juntam na pagina principal "index".
+
+Comecei alterar os parametros pelas paginas sozinhas:
+- admin -> error
+  
+- auth -> error
+  
+- inc -> error 
+
+Unindo admin + inc (page=admin.inc), carregou esta pagina e no final da página a nossa 2ª FLAG
+
+![Imagem do programa](https://ibb.co/74pbHXX)  
+
+## Flag N° 3
 
 
