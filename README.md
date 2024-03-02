@@ -228,8 +228,6 @@ Já sabemos de 3 coisas:
 
 3-	Vulnerável através do include().
 
-![Imagem do programa](https://ibb.co/mSn9cDf)
-
 <img src="Imagens/Imagem1.png">
 
 ## Flag N° 1 
@@ -250,7 +248,7 @@ phpinfo();
 
 E foi aí que já encontrei a primeria FLAG!
 
-![Imagem do programa](https://ibb.co/9p79FMk)
+<img src="Imagens/Imagem2.png">
 
 ## Flag N° 2
 
@@ -264,7 +262,7 @@ Isso nos dá a resposta da segunda teoria que tínhamos – a pagina de login pa
 
 Entrando na página admin tem apenas uma parte adicional de login.
 
-![Imagem do programa](https://ibb.co/b2JkpbM) 
+<img src="Imagens/Imagem3.png">
 
 Primerio testei um SQLi simples:
 
@@ -276,7 +274,7 @@ Mas acabou não dando em nada.
 
 Depois disso, fui analisar a URL e percebi que ela recebe o parâmetro page=admin.auth.inc, pensei em tentar colocar algo diferente para ver se refletia, por exemplo “página “a” não encontrada”; quando enviei, recebi esse erro suspeito que nos deu algumas informações:
 
-![Imagem do programa](https://ibb.co/Hzw5SSy) 
+<img src="Imagens/Imagem4.png">
 
 - O caminho onde o programa roda.
   
@@ -296,7 +294,7 @@ Comecei alterar os parametros pelas paginas sozinhas:
 
 Unindo admin + inc (page=admin.inc), carregou esta página e no final da página a nossa 2ª FLAG
 
-![Imagem do programa](https://ibb.co/74pbHXX)  
+<img src="Imagens/Imagem5.png">
 
 ## Flag N° 3
 
