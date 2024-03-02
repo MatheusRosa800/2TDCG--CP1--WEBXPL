@@ -22,7 +22,7 @@ Checkpoint realizado com o intuito de colocar em prática todos os conhecimentos
 
 - Reflected Cross-site scripting (XSS)
 
-Nesse tipo de vulnerabilidade, o atacante consegue injetar scripts maliciosos no lado do cliente (navegador) através de parâmetros fornecidos pela URL ou formulários. A vulnerabilidade "refletida" ocorre quando os dados enviados pelo usuário são devolvidos pelo servidor sem validação
+Nesse tipo de vulnerabilidade, o atacante consegue injetar scripts maliciosos no lado do cliente (navegador) através de parâmetros fornecidos pela URL ou formulários. A vulnerabilidade "refletida" ocorre quando os dados enviados pelo usuário são devolvidos pelo servidor sem validação.
 
 ## 1.2 - Impacto
 
@@ -109,16 +109,11 @@ URL: https://www.exploit-db.com/exploits/51198
 
 URL: https://www.exploit-db.com/exploits/51214
 
-
-
-
-
 ## 2.1 - Nome da falha
 
 - Path Traversal
 
 Ocorre quando uma aplicação web permite que um invasor acesse arquivos e diretórios fora do diretório raiz pretendido. Manipulando variáveis ​​que fazem referência a arquivos com sequências (../) e suas variações ou usando caminhos absolutos. Podendo navegar por diretórios do sistema de arquivos do servidor, acessando arquivos sensíveis ou executando comandos não autorizados.
-
 
 
 ## 2.2 - Impacto
@@ -129,7 +124,7 @@ Um invasor que explorar com êxito pode obter acesso a dados confidenciais, modi
 
 Isto pode levar a uma variedade de incidentes de segurança, como violações de dados, roubo de propriedade intelectual ou interrupção de serviços.
 
-OBS: O impacto de uma vulnerabilidade Path Traversal pode variar dependendo da natureza dos arquivos e dados acessados
+OBS: O impacto de uma vulnerabilidade Path Traversal pode variar dependendo da natureza dos arquivos e dados acessados.
 
 ## 2.3 - Dois exemplos onde elas ocorreram no mundo real
 
@@ -221,9 +216,9 @@ IDENTIFIQUE o seu relatório com um print contendo seu usuário na plataforma, e
 
 ### Fazendo o Reconhecimento
 
-Lendo as informações do site sabemos que há um PHP rodando e que ele também utilizou a função include() que já sabemos que é uma função vulnerável
+Lendo as informações do site sabemos que há um PHP rodando e que ele também utilizou a função include() que já sabemos que é uma função vulnerável se não tratada do jeito correto.
 
-Abaixo há uma box de comentário que quando submetida, é enviada para o servidor e apenas o admin pode liberar o comentário
+Abaixo há uma caixa de comentário que quando submetida, é enviada para o servidor e apenas o admin pode liberar o comentário.
 
 Já sabemos de 3 coisas: 
 
@@ -237,7 +232,7 @@ Já sabemos de 3 coisas:
 
 ## Flag N° 1 
 
-Quando vi a caixa de entrada a primeira coisa que fiz foi colocar um codigo script. Porém não obtive nada.
+Quando vi a caixa de entrada, a primeira coisa que fiz foi colocar um codigo script. Porém não obtive nada.
 
 ~~~~
 <script>alert('Teste')</script>
@@ -251,7 +246,7 @@ phpinfo();
 ?>
 ~~~~
 
-E foi ai que já encontrei a primeria FLAG!
+E foi aí que já encontrei a primeria FLAG!
 
 ![Imagem do programa](https://ibb.co/9p79FMk)
 
@@ -265,11 +260,11 @@ Depois fui em inspecionar elementos e encontrei este comentário:
 
 Isso nos dá a resposta da segunda teoria que tínhamos – a pagina de login para admin.
 
-Entrando na pagina admin tem apenas uma parte adicional de login
+Entrando na página admin tem apenas uma parte adicional de login.
 
 ![Imagem do programa](https://ibb.co/b2JkpbM) 
 
-Primerio testei um sql injection simples
+Primerio testei um SQLi simples:
 
 ~~~~
 ' OR 1=1
@@ -277,26 +272,27 @@ Primerio testei um sql injection simples
 
 Mas acabou não dando em nada.
 
-Depois disso, fui analisar a URL e percebi que ela recebe o parâmetro admin.auth.inc, pensei em tentar colocar algo diferente para ver se refletia, por exemplo “pagina “a” não encontrada”; quando enviei, recebi esse erro suspeito que nos deu algumas dicas.
+Depois disso, fui analisar a URL e percebi que ela recebe o parâmetro page=admin.auth.inc, pensei em tentar colocar algo diferente para ver se refletia, por exemplo “página “a” não encontrada”; quando enviei, recebi esse erro suspeito que nos deu algumas informações:
 
 ![Imagem do programa](https://ibb.co/Hzw5SSy) 
 
-- o caminho onde o programa roda
+- O caminho onde o programa roda.
   
-- o include path
+- O include path.
 
-- a.php
+- a.php.
 
 Aqui foi possível perceber que o include recebe nomes de arquivos, pois ele procurou por a.php, isso quer dizer que admin\auth\inc, são paginas distintas e elas se juntam na pagina principal "index".
 
 Comecei alterar os parametros pelas paginas sozinhas:
+
 - admin -> error
   
 - auth -> error
   
 - inc -> error 
 
-Unindo admin + inc (page=admin.inc), carregou esta pagina e no final da página a nossa 2ª FLAG
+Unindo admin + inc (page=admin.inc), carregou esta página e no final da página a nossa 2ª FLAG
 
 ![Imagem do programa](https://ibb.co/74pbHXX)  
 
