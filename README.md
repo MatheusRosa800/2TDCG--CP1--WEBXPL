@@ -219,5 +219,29 @@ IDENTIFIQUE o seu relatório com um print contendo seu usuário na plataforma, e
 
 ## Write-up
 
+### Fazendo o Reconhecimento
+
+Lendo as informações do site sabemos que há um PHP rodando e que ele também utilizou a função include() que já sabemos que é uma função vulnerável
+
+![Imagem do programa](https://ibb.co/mSn9cDf)
+
+### Flag N° 1 
+
+Abaixo há uma box de comentário que quando submetida, é enviada para o servidor e apenas o admin pode liberar o comentário
+
+Já sabemos de 3 coisas: 
+
+1-	PHP rodando.
+
+2-	Contem um usuário admin, e possivelmente uma pagina para logar como admin.
+
+3-	Vulnerável a LFI e RFI através do include().
+
+
+### Flag N° 2
+
+
+
+### Flag N° 3
 
 
