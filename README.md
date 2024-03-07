@@ -299,4 +299,23 @@ Unindo admin + inc (page=admin.inc), carregou esta página e no final da página
 
 ## Flag N° 3
 
+Confesso que fiquei preso nesta flag alguns dias. 
 
+Estava muito incomodado com a URL approve e imaginei que seria algo nela, mas acabei não progredindo em nada.
+
+~~~~
+?page=admin.inc&approve=9
+~~~~
+
+Eu li as minhas anotações novamente (as mesmas que estão aqui em cima) e havia uma coisa que eu não tinha explorado ainda:
+
+### O include()
+
+Voltei naquele erro do include() e procurei entender oque dizia:
+
+<img src="Imagens/Imagem4.png">
+
+
+
+
+  
