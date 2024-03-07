@@ -315,6 +315,10 @@ Voltei naquele erro do include() e procurei entender oque dizia:
 
 <img src="Imagens/Imagem4.png">
 
+Primeiro ele da um erro dizendo que não encontrou o arquivo a.php e que este arquivo não existe no app/index.php
+
+Ou seja, ele procura o parametro dado como um arquivo dentro desse index.php, é nele que precisamos entrar. 
+
 
 
 
