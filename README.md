@@ -307,6 +307,7 @@ Estava muito incomodado com a URL approve e imaginei que seria algo nela, mas ac
 ?page=admin.inc&approve=9
 ~~~~
 
+
 Eu li as minhas anotações novamente (as mesmas que estão aqui em cima) e havia uma coisa que eu não tinha explorado ainda:
 
 ### O include()
@@ -318,6 +319,40 @@ Voltei naquele erro do include() e procurei entender oque dizia:
 Primeiro ele da um erro dizendo que não encontrou o arquivo a.php e que este arquivo não existe no app/index.php
 
 Ou seja, ele procura o parametro dado como um arquivo dentro desse index.php, é nele que precisamos entrar. 
+
+<img src="Imagens/Imagem8.png">
+
+Testando apenas o parametro index, aparentemente ocorre um erro de overflow, temos que acessar de outro jeito
+
+Apos isso, tentei atraves de um codigo simples de leitura em PHP na area de comentarios e validando na area de admin:
+
+~~~~
+<?php echo readfile("index.php")?> 
+~~~~
+
+Procurando na internet de como utilizar o include, aprendi que a função não necessariamente só aceita nome de arquivos, ele tambem aceita caminhos.
+
+No exemplo que vi, ele coloca assim:
+
+- http://nomeexemplo/nomearquivo
+
+Testei com a URL inteira, porem não funcionou.
+
+Em seguida, testei utilizando o localhost:
+
+~~~~
+page=http://localhost/index
+~~~~
+
+E obtive esse resultado:
+
+<img src="Imagens/Imagem9.png">
+
+Significando que o servidor carregou a página principal, que já continha um include index ( no caso, área de comentarios)  e incluiu mais uma vez.
+
+
+
+
 
 
 
