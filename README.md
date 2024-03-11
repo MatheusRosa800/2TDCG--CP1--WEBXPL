@@ -306,7 +306,7 @@ Entrando na página admin tem apenas uma parte adicional de login.
 Primerio testei um SQLi simples:
 
 ~~~~
-' OR 1=1
+' OR 1=1--
 ~~~~
 
 Mas acabou não dando em nada.
