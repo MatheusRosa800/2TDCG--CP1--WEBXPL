@@ -143,6 +143,9 @@ class SimpleHandler(SimpleHTTPRequestHandler):
         file_path = self.path.strip('/')
 
         try:
+
+            # vvv Aqui está a linha vulneravel!! vvv
+
             # Abrir o arquivo solicitado
             f = open(file_path, 'rb')
             # Ler o conteúdo do arquivo
