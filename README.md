@@ -230,7 +230,7 @@ Já sabemos de 3 coisas:
 
 <img src="Imagens/Imagem1.png">
 
-## Flag N° 1 
+## Flag N° 0
 
 Quando vi a caixa de entrada, a primeira coisa que fiz foi colocar um codigo script. Porém não obtive nada.
 
@@ -250,7 +250,7 @@ E foi aí que já encontrei a primeria FLAG!
 
 <img src="Imagens/Imagem2.png">
 
-## Flag N° 2
+## Flag N° 1
 
 Depois fui em inspecionar elementos e encontrei este comentário:
 
@@ -297,7 +297,7 @@ Unindo admin + inc (page=admin.inc), carregou esta página e no final da página
 <img src="Imagens/Imagem6.png">
 
 
-## Flag N° 3
+## Flag N° 2
 
 Confesso que fiquei preso nesta flag alguns dias. 
 
