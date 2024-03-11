@@ -356,6 +356,13 @@ Depois de um bom tempo, tentando descobrir o que fazer agora, eu abri o codigo-f
 
 <img src="Imagens/Imagem10.png">
 
+## Finalizando o CTF
+
+Imputei as 3 flags no HackerOne
+
+<img src="Imagens/Imagem11.png">
+
+O lab Cody's First Blog foi ownado
 
 
 
