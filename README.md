@@ -232,6 +232,8 @@ URL: https://www.exploit-db.com/exploits/50406
 
 IDENTIFIQUE o seu relatório com um print contendo seu usuário na plataforma, email, nome completo e RM!
 
+<img src="Imagens/ImagemUser.png">
+
 ## Laboratorio Realizado
 
 ### Nome:
