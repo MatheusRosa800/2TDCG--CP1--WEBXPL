@@ -135,58 +135,87 @@ Path Traversal no Equifax (2017)
 ## 2.4 - Código vulnerável à esta falha 
 
 ```
-import os
-from flask import Flask, request, send_file
+from http.server import HTTPServer, SimpleHTTPRequestHandler
 
-app = Flask(__name__)
+class SimpleHandler(SimpleHTTPRequestHandler):
+    def do_GET(self):
+        # Aqui estamos pegando o caminho do arquivo a partir da URL
+        file_path = self.path.strip('/')
 
-@app.route('/download')
-def download_file():
-    filename = request.args.get('file', '')
+        try:
+            # Abrir o arquivo solicitado
+            f = open(file_path, 'rb')
+            # Ler o conteúdo do arquivo
+            content = f.read()
+            f.close()
 
-    # vvv Aqui está a linha vulneravel!! vvv
+            # Enviar o conteúdo do arquivo como resposta
+            self.send_response(200)
+            self.end_headers()
+            self.wfile.write(content)
 
-    file_path = os.path.join('/path/to/files/', filename)
-    
-    # Verifica se o arquivo existe e envia para download
-    if os.path.isfile(file_path):
-        return send_file(file_path, as_attachment=True)
-    else:
-        return "Arquivo não encontrado!", 404
+        except FileNotFoundError:
+            # Se o arquivo não for encontrado, retornar um erro 404
+            self.send_error(404, "File Not Found")
+
+        except IsADirectoryError:
+            # Se for um diretório, retornar um erro 400
+            self.send_error(400, "Bad Request - Directory Access Forbidden")
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    server_address = ('', 8000)
+    httpd = HTTPServer(server_address, SimpleHandler)
+    print('Servidor rodando em http://localhost:8000/')
+    httpd.serve_forever()
+
 ```
 ## 2.4.2 - Bonus! Código mitigado
 
 ```
+from http.server import HTTPServer, SimpleHTTPRequestHandler
 import os
-from flask import Flask, request, send_file
 
-app = Flask(__name__)
+class SimpleHandler(SimpleHTTPRequestHandler):
+    # Diretório raiz permitido
+    ROOT_DIR = r"C:\Área de Trabalho\Defesa_Cibernética\2TDCG\WEB APPS e MOBILE EXPLOITATION\Checkpoints\CP1-WEBXPL\Codigos"
 
-@app.route('/download')
-def download_file():
-    filename = request.args.get('file', '')
-    # Caminho absoluto do diretório permitido
-    allowed_directory = '/path/to/files/'
+    def do_GET(self):
+        # Aqui estamos pegando o caminho do arquivo a partir da URL
+        file_path = self.path.strip('/')
 
-    # vvv Aqui está a linha que mitiga a vulnerabilidade!! vvv
-    
-    file_path = os.path.abspath(os.path.join(allowed_directory, filename))
+        # Caminho completo para o arquivo solicitado
+        full_path = os.path.join(self.ROOT_DIR, file_path)
 
-    if os.path.commonpath((file_path, allowed_directory)) != allowed_directory:
-        # Se o caminho não estiver dentro do diretório permitido, retorna erro
-        return "Acesso não autorizado!", 403
+        try:
+            # Verifica se o caminho está dentro do diretório permitido
+            if not os.path.realpath(full_path).startswith(self.ROOT_DIR):
+                raise FileNotFoundError
 
-    # Verifica se o arquivo existe e envia para download
-    if os.path.isfile(file_path):
-        return send_file(file_path, as_attachment=True)
-    else:
-        return "Arquivo não encontrado!", 404
+            # Abrir o arquivo solicitado
+            f = open(full_path, 'rb')
+            # Ler o conteúdo do arquivo
+            content = f.read()
+            f.close()
+
+            # Enviar o conteúdo do arquivo como resposta
+            self.send_response(200)
+            self.end_headers()
+            self.wfile.write(content)
+
+        except FileNotFoundError:
+            # Se o arquivo não for encontrado ou estiver fora do diretório permitido, retornar um erro 404
+            self.send_error(404, "File Not Found")
+
+        except IsADirectoryError:
+            # Se for um diretório, retornar um erro 400
+            self.send_error(400, "Bad Request - Directory Access Forbidden")
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    server_address = ('', 8000)
+    httpd = HTTPServer(server_address, SimpleHandler)
+    print('Servidor rodando em http://localhost:8000/')
+    httpd.serve_forever()
+
 ```
 
 ## 2.5 - Exploits publicados 
