@@ -322,9 +322,9 @@ Ou seja, ele procura o parametro dado como um arquivo dentro desse index.php, é
 
 <img src="Imagens/Imagem8.png">
 
-Testando apenas o parametro index, aparentemente ocorre um erro de overflow, temos que acessar de outro jeito
+Testando apenas o parametro index na URL, aparentemente ocorre um erro de overflow, então temos que acessar de outro jeito
 
-Apos isso, tentei atraves de um codigo simples de leitura em PHP na area de comentarios e validando na area de admin:
+Apos isso, como já sabia que o site refletia os comentarios e era vulneravel a PHP injection, tentei atraves de um codigo simples de leitura na area de comentarios e validei na área de admin:
 
 ~~~~
 <?php echo readfile("index.php")?> 
@@ -348,7 +348,13 @@ E obtive esse resultado:
 
 <img src="Imagens/Imagem9.png">
 
-Significando que o servidor carregou a página principal, que já continha um include index ( no caso, área de comentarios)  e incluiu mais uma vez.
+Significando que o servidor carregou a página principal, que já continha um include index ( no caso, área de comentarios) e incluiu mais uma vez.
+
+Depois de um bom tempo, tentando descobrir o que fazer agora, eu abri o codigo-fonte da pagina só por descaso e lá o comando readfile() tinha sido executado, e todo o arquivo estava comentado incluindo a nossa terceira e última flag.
+
+<img src="Imagens/Imagem10.png">
+
+
 
 
 
