@@ -389,9 +389,7 @@ E obtive esse resultado:
 
 Significando que o servidor carregou a página principal, que já continha um include index ( no caso, área de comentarios) e incluiu mais uma vez.
 
-<img src="Imagens/Imagem12.png">
-
-Depois de um bom tempo, tentando descobrir o que fazer agora, eu abri o codigo-fonte da pagina só por descaso e lá o comando readfile() tinha sido executado, e todo o arquivo estava comentado incluindo a nossa terceira e última flag.
+Depois de um bom tempo, eu abri o codigo-fonte da página o comando readfile() tinha sido executado, e todo o arquivo estava comentado incluindo a nossa terceira e última flag.
 
 <img src="Imagens/Imagem10.png">
 
@@ -402,13 +400,3 @@ Imputei as 3 flags no HackerOne
 <img src="Imagens/Imagem11.png">
 
 O lab Cody's First Blog foi ownado!!!
-
-
-
-
-
-
-
-
-
-  
